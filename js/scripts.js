@@ -8,18 +8,21 @@ function typeOfTriangle(event) {
     const side3 = parseFloat(document.querySelector("input#side3").value);
 
     let triangle;
-    if (side1 === side2 && side1 === side3) {
-        triangle = "Equilateral";
-    } else if (side1 === side2 || side1 === side3 || side2 === side3) {
-        triangle = "Isosceles";
+    if (side1 + side2 <= side3 || side1+ side3 <= side2 || side2 + side3 <= side1) {
+        triangle = "Not a triangle"
     } else {
-        triangle = "Scalene";
+        if (side1 === side2 && side1 === side3) {
+            triangle = "Equilateral";
+        } else if (side1 === side2 || side1 === side3 || side2 === side3) {
+            triangle = "Isosceles";
+        } else {
+            triangle = "Scalene";
+        }
     }
-
     document.getElementById("output").innerText = triangle;
 }
 
-window. addEventListener("load", function() {
+window.addEventListener("load", function () {
     const form = document.getElementById("triangle-sides");
     form.addEventListener("submit", typeOfTriangle);
 });
